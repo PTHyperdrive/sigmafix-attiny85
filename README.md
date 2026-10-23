@@ -115,24 +115,30 @@ Cut the DCL line between the camera contact and the lens board, bridge the cut
 with a 220Ω resistor, and connect the ATtiny85 as follows:
 
 ```
-                                   Camera side
-                    =========================================
-                    DGND  LCLK  DLC  DCL  VDD  PGND/DET  VBAT
-                     |     |     |    |    |      |       |
-      ATtiny85    ,------------------------+      |       |
-     __________   |  |     |     |    |    |      |       |
-    |o         |  |  |     |     |    \    |      |       |
-   1|RESET  VCC|8-'  |     |     | 220/    |      |       |
-   2|PB3    PB2|7----------+     |  Ω \    |      |       |
-   3|PB4    PB1|6    |     |     |    /    |      |       |
- ,-4|GND    PB0|5---------------------+    |      |       |
- |  |__________|     |     |     |    |    |      |       |
- `-------------------+     |     |    |    |      |       |
-                     |     |     |    |    |      |       |
-                    DGND  LCLK  DLC  DCL  VDD  PGND/DET  VBAT
-                    =========================================
-                                    Lens side
+                                           Camera side
+                            =========================================
+                            DGND  LCLK  DLC  DCL  VDD  PGND/DET  VBAT
+                             |     |     |    |    |      |       |
+  ,-----------------------+------------------------+      |       |
+  |           ATtiny85    |  |     |     |    |    |      |       |
+  |          __________   |  |     |     |    |    |      |       |
+  |         |o         |  |  |     |     |    \    |      |       |
+  |        1|RESET  VCC|8-'  |     |     | 220/    |      |       |
+  `-[10k]--2|PB3    PB2|7----------+     |  Ω \    |      |       |
+  ,-[10k]--3|PB4    PB1|6    |     |     |    /    |      |       |
+  +--------4|GND    PB0|5---------------------+    |      |       |
+  |         |__________|     |     |     |    |    |      |       |
+  `--------------------------+     |     |    |    |      |       |
+                             |     |     |    |    |      |       |
+                            DGND  LCLK  DLC  DCL  VDD  PGND/DET  VBAT
+                            =========================================
+                                            Lens side
 ```
+
+The two 10kΩ resistors (marked `103`) are for the Digispark builds only, which
+leave PB3 and PB4 floating. With the bare-chip build, leave pins 2 and 3
+unconnected: they are debug outputs there, and the pull-up on pin 2 would waste
+current.
 
 PB0 must connect on the lens side of the resistor. The chip only drives DCL low
 during the one bit it changes, and the resistor is what lets it override the
