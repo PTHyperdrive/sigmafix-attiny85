@@ -149,8 +149,13 @@ as it did before.
 DCL is the middle one of the seven lens contacts. LCLK is the second contact
 from the DGND end, so check which end that is before soldering.
 
+This is how it looks in a Sigma 28-80mm, with the chip taken off a Digispark
+and soldered to a SOIC-8 adapter board:
+
+![Sigma 28-80mm with the ATtiny85 installed, wiring labelled](sigmafix_lens_wiring.jpg)
+
 marcan's [photo of an install](https://github.com/marcan/sigmafix/blob/master/sigmafix_lens_diagram.jpg)
-shows how it can fit inside a lens. Note that the SOIC-8 ATtiny85 (ATtiny85-20SU)
+shows another way to fit it inside a lens. Note that the SOIC-8 ATtiny85 (ATtiny85-20SU)
 is the wide 5.3 mm body, bigger than the 3.9 mm ATtiny13A-SSU.
 
 Before closing the lens, take a few shots stopped down (f/8, f/11, the smallest
